@@ -3,10 +3,12 @@ import loginLottieData from "../assets/Lottie/Animation - 1734590654343.json";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext/AuthContext";
 import GoogleLogin from "./shared/GoogleLogin";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
-
-    const { loginUser } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,12 +17,13 @@ const Login = () => {
     const password = form.password.value;
 
     loginUser(email, password)
-    .then(result=>{
+      .then((result) => {
         console.log(result.user);
-    })
-    .catch(error=>{
+        navigate(location.state ? location.state : "/");
+      })
+      .catch((error) => {
         console.log(error);
-    })
+      });
   };
 
   return (
