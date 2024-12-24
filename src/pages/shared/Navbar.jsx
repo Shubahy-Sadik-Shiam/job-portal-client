@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
-import jobIcon from "../../assets/Icon/Logo.png"
+import jobIcon from "../../assets/Icon/Logo.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -12,13 +12,19 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/jobs">Jobs</NavLink>
+        <NavLink to="/myApplications">My Applications</NavLink>
+      </li>
+      <li>
+        <NavLink to="/addJob">Add Job</NavLink>
+      </li>
+      <li>
+        <NavLink to="/myPostedJobs">My Posted Jobs</NavLink>
       </li>
     </>
   );
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-200 mb-10 p-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -55,7 +61,9 @@ const Navbar = () => {
           {user ? (
             <div className="max-sm:space-y-2 md:flex items-center gap-4">
               <p>{user?.email}</p>
-              <button onClick={logOut} className="btn">Log out</button>
+              <button onClick={logOut} className="btn">
+                Log out
+              </button>
             </div>
           ) : (
             <div>
